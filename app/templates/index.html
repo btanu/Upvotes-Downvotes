@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro%}
+
+{% block title %}
+Pitch-Perfect
+{% endblock title %}
+
+{% block main %}
+<div class="container-fluid">
+    <h1 class="text-center">All Posts</h1>
+    <hr>
+    <div class="row">
+        {{ macro.displayPitches(pitches) }}
+    </div>
+</div>
+{% endblock main %}

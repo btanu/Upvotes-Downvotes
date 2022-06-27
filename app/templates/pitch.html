@@ -1,0 +1,42 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'base.html' %}
+
+
+{% block main %}
+<div class="row m-lg-5">
+    <div class="col-md-3">
+        <h5 class="card-body">
+            {{pitch.user.username}}
+        </h5>
+        <div class="card">
+            <div class="card-header">{{pitch.title}}</div>
+        </div>
+        <div class="card-body">
+            {{pitch.content}}
+        </div>
+    </div>
+</div>
+<div class="container row">
+    <h1><strong>Comments</strong></h1>
+
+    {% for comment in comments %}
+    <div class="col-md-3 m-auto h-100">
+        Posted on:{{comment.posted.strftime("%d %b %Y")}}
+        <div class="card m-auto p-2">
+            <div class="card-title text-white bg-black p-0.4"><em>anonymous</em></div>
+            <hr>
+            {{comment.comment}}
+        </div>
+        <br>
+
+    </div>
+    {% endfor %}
+
+</div>
+<div class="row m-lg-4">
+    <div class="col-md-6">
+        {{wtf.quick_form(form)}}
+
+    </div>
+</div>
+{% endblock main %}

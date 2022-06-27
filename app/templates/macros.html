@@ -1,0 +1,33 @@
+{% macro displayPitches(pitches) %}
+
+
+{% for pitch in pitches %}
+
+<div class="col-md-3 mb-3 container">
+    <div class="card text-justify p-md-1 h-100">
+        <strong>
+            <h4 class="card text-white bg-black p-1">{{pitch.user.username}}</h4>
+        </strong>
+        <em class="text-center p-0.2"> date posted: {{pitch.posted.strftime("%d %b %Y")}}</em>
+        <br>
+        <div class="card-body">
+            <strong>{{pitch.title}}</strong>
+            <br>
+            <p>{{pitch.content}}</p>
+            <br>
+            <a href="{{url_for('main.pitch', id = pitch.id)}}">View Pitch</a>
+        </div>
+        <div class="m-lg-auto">
+            <a href="{{url_for('main.upVote', id = pitch.id)}}"><i class="fas fa-arrow-alt-circle-up text-black"></i>
+                <span>{{pitch.up_vote.count()}}</span></a>
+            <a href="{{url_for('main.downVote', id = pitch.id)}}"> <i
+                    class="fas fa-arrow-alt-circle-down text-danger"></i>
+                <span><strong>{{pitch.down_vote.count()}}</strong></span></a>
+        </div>
+    </div>
+</div>
+<br>
+
+{% endfor %}
+
+{% endmacro %}

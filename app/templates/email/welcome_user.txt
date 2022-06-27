@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Welcome to Pitches
+Leave a Pitch, Read a Pitch, all about Pitches.

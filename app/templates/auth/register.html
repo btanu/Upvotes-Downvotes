@@ -1,0 +1,18 @@
+{% extends 'auth/auth-base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-md-2"> </div>
+<div class="col-md-8">
+
+{{wtf.quick_form(registration_form)}} 
+<!-- we use the this function to render forms  -->
+
+</div>
+<div class="col-md-2"></div>
+</div>
+</div>
+
+{% endblock%}

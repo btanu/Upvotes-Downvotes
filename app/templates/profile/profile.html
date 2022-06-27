@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+
+{% block main %}
+<div class="container">
+        <div class="row">
+            <!-- displaying  Username-->
+            <div class="col-md-4">
+                <h3> {{user.username| capitalize}} </h3>
+
+                <!--Displaying user bio-->
+                {% if user.bio %}
+                <p> {{user.bio}}</p>
+                {%else%}
+                <p> {{user.username| capitalize}} has no bio </p>
+                {% endif %}
+                {% if user == current_user %}
+                <a class="text-danger btn btn-dark" style="text-decoration: none;"
+                    href="{{url_for('main.update_profile',uname=user.username)}}"><strong> Edit profile </strong></a>
+                {% endif %}
+                <br>
+                <form action="{{url_for('main.update_pic',uname=user.username)}}" method="post"
+                    enctype="multipart/form-data">
+
+                    <input type="file" name="photo" class="form-control" required>
+                    <input class="btn btn-dark" type="submit" value="Upload">
+                </form>
+            </div>
+
+            <!--Display profile photo--> 
+            <div class="col-md-3">
+
+                {% if user.profile_pic_path %}
+                <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+                {%else%}
+                <p>No profile picture</p>
+                {% endif %}
+                <br>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <hr>
+            <h1>{{user.username}}'s pitches</h1>
+            <br>
+            <div>
+                <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Click To Add Pitch</button>
+                <br>
+            </div>
+            <br>
+            {% include 'create_pitch.html' %}
+            <br>
+            <div>
+                {% include 'pitches.html' %}
+            </div>
+        </div>
+</div>
+</div>
+{% endblock main %}
