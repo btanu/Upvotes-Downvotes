@@ -21,27 +21,11 @@ git clone https://github.com/btanu/Upvotes-Downvotes.git
 ```
 
 ```
-cd into folder
+cd Upvotes-Downvotes
 ```
 
 ```
-add start.sh file
-```
-
-```
-Create required Database
-```
-
-```
-Create start file
-```
-
-```
-chmod a+x start.sh
-```
-
-```
-./start.sh
+python3 manage.py runserver
 ```
 
 ### Technologies Used
@@ -49,7 +33,6 @@ chmod a+x start.sh
 - Python3.10
 - Flask
 - Jinja2
-- Heroku
 - Bootstrap
 - HTML & CSS
 
