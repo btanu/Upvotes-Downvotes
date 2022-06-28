@@ -15,7 +15,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        mail_message("Welcome to Pitches", "email/welcome_user", user.email, user=user)
+        # mail_message("Welcome to Post Perfect", "email/welcome_user", user.email, user=user)
 
         return redirect(url_for('auth.login')) #the user can now login to the the application so we redirect them to the login route
         title = "New Account"

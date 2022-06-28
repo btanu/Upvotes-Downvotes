@@ -4,4 +4,4 @@ from flask import render_template
 @main.app_errorhandler(404)
 def four_Ow_four(error):
     
-    return render_template('fourOwfour.html'), 404
+    return render_template('404.html'), 404

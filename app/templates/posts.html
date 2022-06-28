@@ -9,13 +9,13 @@
                 <th> DownVotes </th>
             </thead>
 
-            {% for pitch in pitches %}
+            {% for post in posts %}
             <tr>
-                <td>{{pitch.title}}</td>
-                <td>{{pitch.category.name}}</td>
-                <td>{{pitch.content}}</td>
-                <td>{{pitch.up_vote.count()}}</td>
-                <td>{{pitch.down_vote.count()}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.category.name}}</td>
+                <td>{{post.content}}</td>
+                <td>{{post.up_vote.count()}}</td>
+                <td>{{post.down_vote.count()}}</td>
             </tr>
             {% endfor %}
 
