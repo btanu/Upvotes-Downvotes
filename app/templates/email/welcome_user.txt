@@ -1,3 +1,3 @@
 Hello {{user.username}}
-Welcome to Pitches
-Leave a Pitch, Read a Pitch, all about Pitches.
+Welcome to Post Perfect
+Leave a Post, Read a Post, all about Posts.

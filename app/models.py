@@ -5,9 +5,9 @@ from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
 
-class Pitch(db.Model):
+class Post(db.Model):
 
-    __tablename__ = 'pitches'
+    __tablename__ = 'posts'
 
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String(255))
@@ -19,18 +19,18 @@ class Pitch(db.Model):
     comment = db.relationship('Comments',backref = 'post',lazy = "dynamic")
     down_vote = db.relationship('DownVote',backref = 'post',lazy = "dynamic")
 
-    def save_pitch(self):
+    def save_post(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_pitches_category(cls,category_id):
-        categoryPitches = Pitch.query.filter_by(category_id = category_id).order_by(Pitch.posted.desc())
-        return categoryPitches
+    def get_posts_category(cls,category_id):
+        categoryPosts = Post.query.filter_by(category_id = category_id).order_by(Post.posted.desc())
+        return categoryPosts
 
     @classmethod
     def get_my_posts(cls, user_id):
-        my_posts = Pitch.query.filter_by(user_id = user_id).order_by(Pitch.posted.desc())
+        my_posts = Post.query.filter_by(user_id = user_id).order_by(Post.posted.desc())
         return my_posts
 
 class User(UserMixin, db.Model): #arg helps connect  to db
@@ -41,7 +41,7 @@ class User(UserMixin, db.Model): #arg helps connect  to db
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255)) 
-    pitch = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
+    post = db.relationship('Post',backref = 'user',lazy = "dynamic")
 
     @property #create write only class property password
     def password(self):
@@ -66,7 +66,7 @@ class Category(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255), unique=True)
-    pitch = db.relationship('Pitch',backref = 'category',lazy = "dynamic")
+    post = db.relationship('Post',backref = 'category',lazy = "dynamic")
 
     def save_category(self):
         db.session.add(self)
@@ -86,15 +86,15 @@ class Comments(db.Model):
     comment = db.Column(db.String(255))
     posted = db.Column(db.DateTime, index = True, default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id')) #tels alchemy foreign key and is the primary key of roles
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id')) #tels alchemy foreign key and is the primary key of roles
 
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_comments(cls, pitch_id):
-        comments = Comments.query.filter_by(pitch_id = pitch_id).all()
+    def get_comments(cls, post_id):
+        comments = Comments.query.filter_by(post_id = post_id).all()
         return comments
 
     @classmethod
@@ -110,7 +110,7 @@ class UpVote(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id')) #tels alchemy foreign key and is the primary key of roles
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id')) #tels alchemy foreign key and is the primary key of roles
 
     def save_vote(self):
         db.session.add(self)
@@ -134,7 +134,7 @@ class DownVote(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id')) #tels alchemy foreign key and is the primary key of roles
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id')) #tels alchemy foreign key and is the primary key of roles
 
     def save_vote(self):
         db.session.add(self)

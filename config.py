@@ -1,8 +1,10 @@
 import os
 
 class Config:
+    DEBUG = True
     # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:passdb@localhost/pitches'
     SQLALCHEMY_DATABASE_URI = "sqlite:///data.db"
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
     # SECRET_KEY = os.environ.get('SECRET_KEY')
     SECRET_KEY = os.urandom(32)
     UPLOADED_PHOTOS_DEST = 'app/static/photos'

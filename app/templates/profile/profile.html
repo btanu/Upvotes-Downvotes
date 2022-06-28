@@ -40,18 +40,18 @@
         </div>
         <div class="col-md-12">
             <hr>
-            <h1>{{user.username}}'s pitches</h1>
+            <h1>{{user.username}}'s posts</h1>
             <br>
             <div>
                 <button type="button" class="btn btn-dark" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Click To Add Pitch</button>
+                    data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Click To Add Post</button>
                 <br>
             </div>
             <br>
-            {% include 'create_pitch.html' %}
+            {% include 'create_post.html' %}
             <br>
             <div>
-                {% include 'pitches.html' %}
+                {% include 'posts.html' %}
             </div>
         </div>
 </div>
